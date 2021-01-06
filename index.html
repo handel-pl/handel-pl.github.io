@@ -254,10 +254,10 @@ C<span class="hljs-number">4</span>, Eb<span class="hljs-number">4</span>, G<spa
 </p>
 <pre><code>C1, F1, E1, D1, <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
 D1 <span class="hljs-keyword">for</span> <span class="hljs-number">2</span>b
-</code></pre><p><strong>play</strong>: A command to play a note or notelist for a given duration.
-</p>
+</code></pre><p><strong>play</strong>: A command to play a note or notelist for a given duration. 
+    Play commands can also take a loop customization.</p>
 <pre><code><span class="hljs-symbol">play</span> <span class="hljs-built_in">C1</span>, <span class="hljs-built_in">F1</span>, E1, <span class="hljs-built_in">D1</span>, for <span class="hljs-number">1</span>b
-<span class="hljs-symbol">play</span> <span class="hljs-built_in">D1</span> for <span class="hljs-number">2</span>b
+<span class="hljs-symbol">play</span> <span class="hljs-built_in">D1</span> for <span class="hljs-number">2</span>b loop for 5
 </code></pre><p><strong>rest</strong>: A command to rest for a given duration.
 </p>
 <pre><code><span class="hljs-built_in">rest</span> <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
@@ -308,6 +308,7 @@ hihat</code></pre>
 <h3 id="piano">piano</h3>
 <h3 id="synth">synth</h3>
 <h3 id="casio">casio</h3>
+<h3 id="casio">guitar</h3>
 <h3 id="kick">kick</h3>
 <h3 id="snare">snare</h3>
 <p>All note names are reserved keywords, ex. <strong>C4</strong>, <strong>Bb1</strong>. 
