@@ -153,6 +153,14 @@ finish
 </code></pre>
 <div id="runfive" class="runbtn">Run</div>
 <p>OK! So far so good!</p>
+<h1 id="blocks-loops">Blocks loops</h1>
+<p>Handel (v0.2.0 and greater) supports block loops.  Block loops begin with the <strong>block</strong> keyword and end with the <strong>endblock</strong> keyword and the amount of times a block should loop (a loop customization).</p>
+<p>Here is an example of a block loop in Handel.</p>
+<pre><code><span class="hljs-keyword">block </span>
+<span class="hljs-symbol">    play</span> <span class="hljs-built_in">C3</span>, E3, G3 for <span class="hljs-number">1</span>b 
+<span class="hljs-symbol">    play</span> <span class="hljs-built_in">D3</span>, <span class="hljs-built_in">F3</span>, <span class="hljs-built_in">A3</span> for <span class="hljs-number">1</span>b 
+<span class="hljs-symbol">endblock</span> loop for <span class="hljs-number">10</span>
+</code></pre>
 <h1 id="procedures-i-thought-this-was-a-procedural-programming-language-">Procedures (I thought this was a procedural programming language?)</h1>
 <p>Procedures in Handel are called chunks. You can conceptualize a <strong>chunk</strong> as a song track. When ran,
 chunks play at the same time as other run chunks and the global track. Chunks must begin with the <strong>chunk</strong>
@@ -297,6 +305,8 @@ hihat</code></pre>
 <h3 id="play">play</h3>
 <h3 id="rest">rest</h3>
 <h3 id="save">save</h3>
+<h3 id="block">block</h3>
+<h3 id="endblock">endblock</h3>
 <h3 id="chunk">chunk</h3>
 <h3 id="endchunk">endchunk</h3>
 <h3 id="using">using</h3>
@@ -308,7 +318,7 @@ hihat</code></pre>
 <h3 id="piano">piano</h3>
 <h3 id="synth">synth</h3>
 <h3 id="casio">casio</h3>
-<h3 id="casio">guitar</h3>
+<h3 id="guitar">guitar</h3>
 <h3 id="kick">kick</h3>
 <h3 id="snare">snare</h3>
 <p>All note names are reserved keywords, ex. <strong>C4</strong>, <strong>Bb1</strong>. 
