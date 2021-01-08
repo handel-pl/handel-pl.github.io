@@ -274,7 +274,14 @@ D1 <span class="hljs-keyword">for</span> <span class="hljs-number">2</span>b
 </p>
 <pre><code><span class="hljs-keyword">save</span> myplayable = e2 <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
 <span class="hljs-keyword">save</span> myduration = <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
-</code></pre><p><strong>chunk</strong>: used to declare a procedure. (see above section on procedures for more details)
+</code></pre>
+<p><strong>block</strong>: Used to declare a loop. (see above section on block loops for more details)</p>
+<pre><code><span class="hljs-built_in">block</span>
+    play Gb3 <span class="hljs-keyword">for</span> 2b
+    <span class="hljs-built_in">rest</span> <span class="hljs-keyword">for</span> 2b
+endblock loop <span class="hljs-keyword">for</span> <span class="hljs-number">10</span>
+</code></pre><p></p>
+<p><strong>chunk</strong>: used to declare a procedure. (see above section on procedures for more details)
 </p>
 <pre><code>chunk mybassline
     <span class="hljs-keyword">play</span> G1 <span class="hljs-keyword">for</span> <span class="hljs-number">2</span>b
