@@ -1,3 +1,5 @@
+let {RunHandel} = Handel;
+
 function runoneClicked(){
    RunHandel(`
    start

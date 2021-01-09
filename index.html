@@ -1,9 +1,8 @@
 <!doctype html>
 <html>
   <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.74/Tone.js"></script>
     <script src="https://unpkg.com/handel-pl"></script>
-    <script src="./script.js"></script>
+    <script src="script.js"></script>
     <style>
      body {
        font-family:  'Courier New', Courier, monospace;
@@ -55,11 +54,18 @@
 <p>Try the Handel Web Editor here: <a href="https://ddj231.github.io/Handel-Web-Editor/">Handel Web Editor</a></p>
 <p>Check out the Handel Github repo: <a href="https://github.com/ddj231/Handel">Handel on Github</a></p>
 <p><em>soli deo gloria</em></p>
+
 <h1 id="installation">Installation</h1>
-<p>Add the below to your html file:</p>
-<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.74/Tone.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://unpkg.com/handel-pl"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<p>Add the below to your html document: </p>
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://unpkg.com/handel-pl"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre><p>You&#39;re all set!</p>
+<p><strong>Alternatively</strong> </p>
+<p>Install Handel with the following: </p>
+<pre><code>npm <span class="hljs-selector-tag">i</span> handel-pl
+</code></pre><p>And import Handel with the following:</p>
+<pre><code><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> Handel <span class="hljs-keyword">from</span> <span class="hljs-string">'handel-pl'</span>;
+</code></pre>
+
 <h1 id="usage">Usage</h1>
 <h2 id="example-handel-snippet">Example Handel Snippet</h2>
 <pre><code><span class="hljs-keyword">start</span>
@@ -85,10 +91,14 @@
     `)
 }
 document.addEventListener(<span class="hljs-string">"click"</span>, clicked);
-</code></pre><p>Note that you pass the Handel code into the <strong>RunHandel</strong> function. This function is globally available. </p>
-<p>Additionally you can use the <strong>StopHandel</strong> function to stop a running Handel program. </p>
-<pre><code>StopHandel()<span class="hljs-comment">;</span>
-</code></pre><p>This function is also globally available.</p>
+</code></pre>
+
+<p>Note that you pass the Handel code into the <strong>RunHandel</strong> function <code>Handel.RunHandel(someHandelCode)</code>.</p>
+<p>To compile to midi, pass a config object to the RunHandel function with <strong>outputMidi</strong> set to true. </p>
+<pre><code><span class="hljs-keyword">const</span> <span class="hljs-built_in">config</span> = {outputMidi: true};
+Handel.RunHandel(`start play E4 <span class="hljs-built_in">for</span> <span class="hljs-number">1</span>b finish`, <span class="hljs-built_in">config</span>);
+</code></pre><p>Additionally, you can use the <strong>StopHandel</strong> function to stop a running Handel program. <code>Handel.StopHandel()</code></p>
+
 <h1 id="getting-started">Getting started</h1>
 <p>Handel programs are contained within the <strong>start</strong> and <strong>finish</strong> keywords. Below is a complete Handel program:</p>
 <pre><code><span class="hljs-keyword">start</span>
