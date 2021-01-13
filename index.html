@@ -251,6 +251,29 @@ behavior allows multitrack songs to be created with Handel. </p>
 </code></pre>
 <div id="runeight" class="runbtn">Run</div>
 <p>Above we&#39;ve got a chord, played with a piano, looping 8 times, with a bpm of 100!</p>
+
+<h2 id="custom-instruments">Custom Instruments</h2>
+<p>Handel (v0.4.0 and up) allows custom instruments to be loaded into Handel Programs. Instruments can be created and added to a Run of a Handel program as follows.</p>
+<pre><code><span class="hljs-keyword">let</span> myinst = Handel.MakeInstrument({
+    A1: <span class="hljs-string">'https://tonejs.github.io/audio/casio/A1.mp3'</span>, 
+    A2: <span class="hljs-string">'https://tonejs.github.io/audio/casio/A2.mp3'</span>
+})
+<span class="hljs-keyword">let</span> config = {}
+config.instruments = {funkyinst: myinst} 
+RunHandel(`
+    <span class="hljs-keyword">start</span>
+        load funkyinst <span class="hljs-keyword">as</span> funky 
+        chunk example 
+            play E4 <span class="hljs-keyword">for</span> <span class="hljs-number">4</span>b
+        enchunk
+        run example with sound funky
+    finish
+`, config)
+</code></pre><p>The <code>MakeInstrument</code> function wraps Tone.js&#39;s sampler constructor. It takes a urls object as its argument. This urls object, maps note names matched to their location (locally or not). One or more mappings can be used.</p>
+<p>After making an instrument above, we add it to our config object and run the Handel program with that config.</p>
+<p>Within the Handel program we load the instrument as follows: <code>load configInstrumentName as nameOfInstrumentWithinHandel</code> </p>
+<p><strong>Note</strong>: this feature makes your Handel program less portable but gives you the freedom of using arbitrary instruments in your Handel program.</p>
+
 <h1 id="reference">Reference</h1>
 <p><strong>Note</strong>: A musical note. 7 octaves are available.
 </p>
@@ -285,6 +308,9 @@ D1 <span class="hljs-keyword">for</span> <span class="hljs-number">2</span>b
 </p>
 <pre><code><span class="hljs-keyword">save</span> myplayable = e2 <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
 <span class="hljs-keyword">save</span> myduration = <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
+</code></pre>
+<p><strong>load</strong>: A command to load custom instruments into Handel (see above section on custom instruments for more details).</p>
+<pre><code><span class="hljs-built_in">load</span> someinst <span class="hljs-keyword">as</span> instname
 </code></pre>
 <p><strong>block</strong>: Used to declare a loop. (see above section on block loops for more details)</p>
 <pre><code><span class="hljs-built_in">block</span>
@@ -323,6 +349,8 @@ hihat</code></pre>
 <h3 id="play">play</h3>
 <h3 id="rest">rest</h3>
 <h3 id="save">save</h3>
+<h3 id="load">load</h3>
+<h3 id="as">as</h3>
 <h3 id="block">block</h3>
 <h3 id="endblock">endblock</h3>
 <h3 id="chunk">chunk</h3>
