@@ -80,7 +80,7 @@
 <p>See the Examples folder <a href="https://github.com/ddj231/Handel/tree/master/Examples">here</a> for example Handel programs and inspiration.</p>
 <h2 id="example-using-handel-in-browser">Example Using Handel In Browser</h2>
 <pre><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clicked</span><span class="hljs-params">()</span></span>{
-    RunHandel(`
+    Handel.RunHandel(`
         start
             chunk example using somePlayable 
                 play somePlayable 
@@ -260,7 +260,7 @@ behavior allows multitrack songs to be created with Handel. </p>
 })
 <span class="hljs-keyword">let</span> config = {}
 config.instruments = {funkyinst: myinst} 
-RunHandel(`
+Handel.RunHandel(`
     <span class="hljs-keyword">start</span>
         load funkyinst <span class="hljs-keyword">as</span> funky 
         chunk example 
