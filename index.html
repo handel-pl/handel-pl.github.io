@@ -332,7 +332,11 @@ endchunk
 <pre><code><span class="hljs-built_in">run</span> mypiano <span class="hljs-keyword">using</span> E2, C#<span class="hljs-number">2</span> <span class="hljs-built_in">for</span> <span class="hljs-number">1</span>b
 </code></pre><p><strong>with</strong>: Used to customize a given run of a chunk. (see section on procedures above for more details)</p>
 <pre><code><span class="hljs-built_in">run</span> mybassline <span class="hljs-keyword">with</span> bpm <span class="hljs-number">115</span>
-</code></pre><p><strong>bpm</strong> (beats per minute), <strong>loop</strong>, sound: Follows the <strong>with</strong> keyword. Used to customize a run of a chunk.</p>
+</code></pre><p><strong>bpm</strong> (beats per minute).
+    <br/><strong>loop</strong>: amount of times to loop.
+    <br/><strong>sound</strong>: instrument to use. 
+    <br/><strong>volume</strong>: percentage volume of a chunk (0 - 100).
+</p>
 <pre><code>run mybassline <span class="hljs-keyword">with</span> bpm <span class="hljs-number">90</span>, <span class="hljs-keyword">loop</span> <span class="hljs-keyword">for</span> <span class="hljs-number">2</span>, sound kick
 </code></pre><p><strong>Sounds</strong>: possible sounds that can be used to customize a run of a chunk. (piano, synth, casio, kick, snare, hihat)</p>
 
@@ -360,6 +364,7 @@ hihat</code></pre>
 <h3 id="with">with</h3>
 <h3 id="bpm">bpm</h3>
 <h3 id="loop">loop</h3>
+<h3 id="volume">volume</h3>
 <h3 id="sound">sound</h3>
 <h3 id="piano">piano</h3>
 <h3 id="synth">synth</h3>
