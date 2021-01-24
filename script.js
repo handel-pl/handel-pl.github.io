@@ -39,17 +39,17 @@ function runfourClicked(){
 }
 
 function runfiveClicked(){
-    console.log('5 clicked')
    RunHandel(`
-   start
-    save myplayablenote = E2 for 2b
-    save myrest = for 2b
+    start
+        save mynote = E2
+        save myplayablenote = mynote for 2b
+        save myrest = for 2b
 
-    play myplayablenote
-    rest myrest
-    play myplayablenote
-    rest myrest
-   finish
+        play myplayablenote
+        rest myrest
+        play myplayablenote
+        rest myrest
+    finish
    `)
 }
 
@@ -111,6 +111,20 @@ function runeightClicked(){
     `)
 }
 
+function runnineClicked(){
+    RunHandel(`
+    start
+    save mynotelist = B3 
+
+    update mynotelist lshift 1
+    play mynotelist for 1b
+
+    update mynotelist rshift 2
+    play mynotelist for 1b
+    finish
+    `)
+}
+
 
 function main(){
     let runone = document.body.querySelector("#runone");
@@ -133,6 +147,9 @@ function main(){
 
     let runeight = document.body.querySelector("#runeight");
     runeight.addEventListener('click', runeightClicked);
+
+    let runnine= document.body.querySelector("#runnine");
+    runnine.addEventListener('click', runnineClicked);
 }
 
 document.addEventListener("DOMContentLoaded", main)

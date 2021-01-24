@@ -129,31 +129,42 @@ finish
 <div id="runfour" class="runbtn">Run</div>
 <h1 id="but-are-there-variables-">But are there Variables?</h1>
 <p>tl;dr
-Here is some example usage of variables in Handel</p>
-<pre><code><span class="hljs-built_in">save</span> myplayable = E4, F4, G3 <span class="hljs-keyword">for</span> 3b
-<span class="hljs-built_in">save</span> myduration = <span class="hljs-keyword">for</span> 1b
+Here is a code snippet showing variables in Handel </p>
+<pre><code><span class="hljs-keyword">start</span>
+<span class="hljs-keyword">save</span> mynotelist = Cb3, D3
+<span class="hljs-keyword">save</span> myduration = <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
+<span class="hljs-keyword">save</span> myplayable = E4, F4, G3 <span class="hljs-keyword">for</span> <span class="hljs-number">3</span>b
+
+<span class="hljs-keyword">save</span> myotherplayable = mynotelist <span class="hljs-keyword">for</span> myduration
 
 play myplayable
-<span class="hljs-built_in">rest</span> myduration
-</code></pre><p>You can declare Variables in Handel. Variables store two builtin types in Handel: Playables and Durations.</p>
-<p>We&#39;ve already seen <strong>Playables</strong> above. Playables are a note or notelist (chord) followed by a duration.
-Here are some example playables.</p>
-<pre><code>Bb3 <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
-D<span class="hljs-string">#6</span>, E<span class="hljs-string">#6</span>, G3 <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
-</code></pre><p><em>no promises that the above chord sounds pleasing to the ear :p</em></p>
-<p><strong>Durations</strong> are the keyword <strong>for</strong> followed by a beat.</p>
+rest myduration
+play myotherplayable
+<span class="hljs-keyword">finish</span>
+</code></pre><p>You can declare Variables in Handel. Variables store three builtin types in Handel: Notelists, Durations, Playables.</p>
+<p>A <strong>Notelist</strong> is a single note name, or a list of note names separated by commas.</p>
+<p>For example:</p>
+<pre><code><span class="hljs-keyword">Bb3
+</span>G<span class="hljs-number">#2</span>, <span class="hljs-built_in">A2</span>
+</code></pre><p>Next, a <strong>Duration</strong> is the keyword <strong>for</strong> followed by a beat.</p>
 <p>A <strong>beat</strong> is any whole number followed by the letter &#39;b&#39; </p>
-<p>All together, here some example durations: </p>
+<p>All together, here are some example durations: </p>
 <pre><code><span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
 <span class="hljs-keyword">for</span> <span class="hljs-number">2</span>b
 <span class="hljs-keyword">for</span> <span class="hljs-number">16</span>b
 <span class="hljs-keyword">for</span> <span class="hljs-number">32</span>b
-</code></pre><p>Finally variables!</p>
-<p>To store a playable or a duration use the <strong>save</strong> keyword, followed by a variable name, an equal sign and a playable or a duration.</p>
-<p>Variable name must contain only lowercase letters, and no numbers. Variable names must also not be any of the reserved keywords in Handel. (See the Reserved Keywords section below).</p>
+</code></pre><p>Lastly, we&#39;ve already seen <strong>Playables</strong> above. Playables are a note or notelist (chord) followed by a duration.
+Here are some example playables.</p>
+<pre><code>Bb3 <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
+D<span class="hljs-string">#6</span>, E<span class="hljs-string">#6</span>, G3 <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
+</code></pre><p><em>no promises that the above chord sounds pleasing to the ear :p</em></p>
+<p>Finally variables!</p>
+<p>To store a notelist, playable or a duration use the <strong>save</strong> keyword, followed by a variable name, an equal sign and a notelist, playable, duration (or another variable which stores on of these values).</p>
+<p>Variable names must contain only lowercase letters, and no numbers. Variable names must also not be any of the reserved keywords in Handel. (See the Reserved Keywords section below). </p>
 <p>Below is an example program using variables.</p>
 <pre><code>start
-    <span class="hljs-built_in">save</span> myplayablenote = E2 <span class="hljs-keyword">for</span> 2b
+    <span class="hljs-built_in">save</span> mynote = E2
+    <span class="hljs-built_in">save</span> myplayablenote = mynote <span class="hljs-keyword">for</span> 2b
     <span class="hljs-built_in">save</span> myrest = <span class="hljs-keyword">for</span> 2b
 
     play myplayablenote
@@ -164,6 +175,25 @@ finish
 </code></pre>
 <div id="runfive" class="runbtn">Run</div>
 <p>OK! So far so good!</p>
+<h1 id="variable-reassignment">Variable Reassignment</h1>
+<p>Handel (v0.5.3) and greater now supports variable reassignment. Variables can be reassigned using the <code>update</code> keyword.</p>
+<p>For example:</p>
+<pre><code>save <span class="hljs-attr">mynotelist</span> = B3
+update <span class="hljs-attr">mynotelist</span> = Bb3
+</code></pre><h2 id="reassignment-and-note-shifting">Reassignment and Note Shifting</h2>
+<p>Variables which store Notelists can have their notes shifted left or right by a number of semitones. </p>
+<p>The following example reassigns (or shifts) <code>`mynotelist</code> down/left by one semitone. Then up/right by two semitones.</p>
+<pre><code><span class="hljs-keyword">start</span>
+<span class="hljs-keyword">save</span> mynotelist = B3 
+
+<span class="hljs-keyword">update</span> mynotelist lshift <span class="hljs-number">1</span>
+play mynotelist <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
+
+<span class="hljs-keyword">update</span> mynotelist rshift <span class="hljs-number">2</span>
+play mynotelist <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
+<span class="hljs-keyword">finish</span>
+</code></pre>
+<div id="runnine" class="runbtn">Run</div>
 <h1 id="blocks-loops">Blocks loops</h1>
 <p>Handel (v0.2.0 and greater) supports block loops.  Block loops begin with the <strong>block</strong> keyword and end with the <strong>endblock</strong> keyword and the amount of times a block should loop (a loop customization).</p>
 <p>Here is an example of a block loop in Handel.</p>
@@ -309,6 +339,19 @@ D1 <span class="hljs-keyword">for</span> <span class="hljs-number">2</span>b
 <pre><code><span class="hljs-keyword">save</span> myplayable = e2 <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
 <span class="hljs-keyword">save</span> myduration = <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
 </code></pre>
+<p><strong>update</strong>: A command for reassigning variables (see above section on variable reassignment for more details). Only playabes and durations can be saved in variables.</p>
+<pre><code><span class="hljs-keyword">save</span> myplayable = E2 <span class="hljs-keyword">for</span> 1b
+<span class="hljs-keyword">update</span> myplayble = Eb2 <span class="hljs-keyword">for</span> 2b
+
+<span class="hljs-keyword">save</span> mynotelist = <span class="hljs-keyword">G</span>#4, Cb4
+<span class="hljs-keyword">update</span> mynotelist lshift 2
+</code></pre><p><strong>lshift</strong>: Shift a notelist left a number of semitones.
+<br/>
+<strong>rshift</strong>: Shift a notelist right a number of semitones.</p>
+<pre><code>save mynotelist = D#<span class="hljs-number">4</span>, C4
+update mynotelist lshift <span class="hljs-number">2</span>
+update mynotelist rshift <span class="hljs-number">4</span>
+</code></pre>
 <p><strong>load</strong>: A command to load custom instruments into Handel (see above section on custom instruments for more details).</p>
 <pre><code><span class="hljs-built_in">load</span> someinst <span class="hljs-keyword">as</span> instname
 </code></pre>
@@ -355,6 +398,9 @@ hihat</code></pre>
 <h3 id="play">play</h3>
 <h3 id="rest">rest</h3>
 <h3 id="save">save</h3>
+<h3 id="save">update</h3>
+<h3 id="save">lshift</h3>
+<h3 id="save">rshift</h3>
 <h3 id="load">load</h3>
 <h3 id="as">as</h3>
 <h3 id="block">block</h3>
