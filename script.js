@@ -125,6 +125,67 @@ function runnineClicked(){
     `)
 }
 
+function runtenClicked(){
+    RunHandel(`
+    start
+    save mynotelist = B3 
+
+    update mynotelist lshift 1
+    play mynotelist for 1b
+
+    update mynotelist rshift 2
+    play mynotelist for 1b
+finish
+    `)
+}
+function runelevenClicked(){
+    RunHandel(`
+    start
+    save duration = for 1b
+    save playable = E3, G3 for 2b
+
+    update duration rshift 1 
+    update playable lshift 2 
+
+    play playable
+    rest duration
+    play playable
+    finish
+    `)
+}
+function runtwelveClicked(){
+    RunHandel(`
+    start
+    block 
+        play C3, E3, G3 for 1b 
+        play D3, F3, A3 for 1b 
+    endblock loop for 2 
+
+    save note = C2
+    block 
+        play note for 1b 
+        update note rshift 1
+    endblock loop while note lessthan C3
+    finish
+    `)
+}
+function runthirteenClicked(){
+    RunHandel(`
+    start
+    if E4 greaterthan Cb3 then
+        play E4 for 1b 
+    else
+        play Cb3 for 1b
+    endif
+
+    save mydigit = -5
+    if mydigit equalto 5 then
+        play C2 for 5b
+    endif
+finish
+    `)
+}
+
 
 function main(){
     let runone = document.body.querySelector("#runone");
@@ -148,8 +209,17 @@ function main(){
     let runeight = document.body.querySelector("#runeight");
     runeight.addEventListener('click', runeightClicked);
 
-    let runnine= document.body.querySelector("#runnine");
-    runnine.addEventListener('click', runnineClicked);
+    let runten= document.body.querySelector("#runten");
+    runten.addEventListener('click', runtenClicked);
+
+    let runeleven = document.body.querySelector("#runeleven");
+    runeleven.addEventListener('click', runelevenClicked);
+
+    let runtwelve = document.body.querySelector("#runtwelve");
+    runtwelve.addEventListener('click', runtwelveClicked);
+
+    let runthirteen= document.body.querySelector("#runthirteen");
+    runthirteen.addEventListener('click', runthirteenClicked);
 }
 
 document.addEventListener("DOMContentLoaded", main)

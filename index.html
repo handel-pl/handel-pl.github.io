@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <script src="https://unpkg.com/handel-pl@0.6.0"></script>
+    <script src="https://unpkg.com/handel-pl@0.7.0"></script>
     <script src="script.js"></script>
     <style>
      body {
@@ -141,14 +141,16 @@ play myplayable
 rest myduration
 play myotherplayable
 <span class="hljs-keyword">finish</span>
-</code></pre><p>You can declare Variables in Handel. Variables store three builtin types in Handel: Notelists, Durations, Playables.</p>
+</code></pre><p>You can declare Variables in Handel. Variables store four builtin types in Handel: Digits, Notelists, Durations, Playables.</p>
+
+<p>A <strong>Digit</strong> is a positive or negative integer. 
+
 <p>A <strong>Notelist</strong> is a single note name, or a list of note names separated by commas.</p>
 <p>For example:</p>
 <pre><code><span class="hljs-keyword">Bb3
 </span>G<span class="hljs-number">#2</span>, <span class="hljs-built_in">A2</span>
-</code></pre><p>Next, a <strong>Duration</strong> is the keyword <strong>for</strong> followed by a beat.</p>
-<p>A <strong>beat</strong> is any whole number followed by the letter &#39;b&#39; </p>
-<p>All together, here are some example durations: </p>
+</code></pre><p>A <strong>Duration</strong> is the keyword <strong>for</strong> followed by a beat.</p>
+<p>Here are some example durations: </p>
 <pre><code><span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
 <span class="hljs-keyword">for</span> <span class="hljs-number">2</span>b
 <span class="hljs-keyword">for</span> <span class="hljs-number">16</span>b
@@ -175,34 +177,85 @@ finish
 </code></pre>
 <div id="runfive" class="runbtn">Run</div>
 <p>OK! So far so good!</p>
-<h1 id="variable-reassignment">Variable Reassignment</h1>
-<p>Handel (v0.5.3) and greater now supports variable reassignment. Variables can be reassigned using the <code>update</code> keyword.</p>
-<p>For example:</p>
-<pre><code>save <span class="hljs-attr">mynotelist</span> = B3
-update <span class="hljs-attr">mynotelist</span> = Bb3
-</code></pre><h2 id="reassignment-and-note-shifting">Reassignment and Note Shifting</h2>
-<p>Variables which store Notelists can have their notes shifted left or right by a number of semitones. </p>
+
+<h2 id="reassignment-and-shifting-values">Reassignment and Shifting values</h2>
+<p>All variables in Handel can be shifted using the <code>rshift</code> and <code>lshift</code> keywords. You can think of this as the equivalent of <code>+=</code> and <code>-=</code> respectively. </p>
+<p>For variables of type digit, this shifting is exactly the equivalent of addition and subtraction.</p>
+<p>For notelists shifting changes the note, left or right by a number of semitones.</p>
 <p>The following example reassigns (or shifts) <code>`mynotelist</code> down/left by one semitone. Then up/right by two semitones.</p>
 <pre><code><span class="hljs-keyword">start</span>
-<span class="hljs-keyword">save</span> mynotelist = B3 
+    <span class="hljs-keyword">save</span> mynotelist = B3 
 
-<span class="hljs-keyword">update</span> mynotelist lshift <span class="hljs-number">1</span>
-play mynotelist <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
+    <span class="hljs-keyword">update</span> mynotelist lshift <span class="hljs-number">1</span>
+    play mynotelist <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
 
-<span class="hljs-keyword">update</span> mynotelist rshift <span class="hljs-number">2</span>
-play mynotelist <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
+    <span class="hljs-keyword">update</span> mynotelist rshift <span class="hljs-number">2</span>
+    play mynotelist <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
 <span class="hljs-keyword">finish</span>
 </code></pre>
-<div id="runnine" class="runbtn">Run</div>
-<h1 id="blocks-loops">Blocks loops</h1>
-<p>Handel (v0.2.0 and greater) supports block loops.  Block loops begin with the <strong>block</strong> keyword and end with the <strong>endblock</strong> keyword and the amount of times a block should loop (a loop customization).</p>
-<p>Here is an example of a block loop in Handel.</p>
-<pre><code><span class="hljs-keyword">block </span>
-<span class="hljs-symbol">    play</span> <span class="hljs-built_in">C3</span>, E3, G3 for <span class="hljs-number">1</span>b 
-<span class="hljs-symbol">    play</span> <span class="hljs-built_in">D3</span>, <span class="hljs-built_in">F3</span>, <span class="hljs-built_in">A3</span> for <span class="hljs-number">1</span>b 
-<span class="hljs-symbol">endblock</span> loop for <span class="hljs-number">10</span>
+<div id="runten" class="runbtn">Run</div>
+
+<p>Durations and Playables can also be shifted. </p>
+<p>Shifting a duration increases or decreases its beat value.</p>
+<p>Shifting a playable increases of decreass its notelist.</p>
+<p>For example:</p>
+<pre><code><span class="hljs-keyword">start</span>
+    <span class="hljs-keyword">save</span> <span class="hljs-keyword">duration</span> = <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
+    <span class="hljs-keyword">save</span> playable = E3, G3 <span class="hljs-keyword">for</span> <span class="hljs-number">2</span>b
+
+    <span class="hljs-keyword">update</span> <span class="hljs-keyword">duration</span> rshift <span class="hljs-number">1</span> 
+    <span class="hljs-keyword">update</span> playable lshift <span class="hljs-number">2</span> 
+
+    play playable
+    rest <span class="hljs-keyword">duration</span>
+    play playable
+<span class="hljs-keyword">finish</span>
 </code></pre>
-<h1 id="procedures-i-thought-this-was-a-procedural-programming-language-">Procedures (I thought this was a procedural programming language?)</h1>
+<div id="runeleven" class="runbtn">Run</div>
+
+
+
+
+<h1 id="blocks-loops">Blocks loops</h1>
+<p>Handel supports block loops.  Block loops begin with the <strong>block</strong> keyword and end with the <strong>endblock</strong> keyword and a <code>loop for digit</code> or <code>loop while condition</code> customization.</p>
+<p>Here is an example two block loops in Handel.</p>
+<pre><code><span class="hljs-keyword">start</span>
+    <span class="hljs-keyword">block</span> 
+        play C3, E3, G3 <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b 
+        play D3, F3, A3 <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b 
+    endblock <span class="hljs-keyword">loop</span> <span class="hljs-keyword">for</span> <span class="hljs-number">2</span> 
+
+    <span class="hljs-keyword">save</span> note = C2
+    <span class="hljs-keyword">block</span> 
+        play note <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b 
+        <span class="hljs-keyword">update</span> note rshift <span class="hljs-number">1</span>
+    endblock <span class="hljs-keyword">loop</span> <span class="hljs-keyword">while</span> note lessthan C3
+<span class="hljs-keyword">finish</span>
+</code></pre>
+<div id="runtwelve" class="runbtn">Run</div>
+<p>Block loops are blocking (no pun intended), and should not be confused with Handel&#39;s procedures (chunks).</p>
+<p>More on procedures below.</p>
+<h1 id="conditionals-if-else-blocks-">Conditionals (if - else blocks)</h1>
+<p>Though booleans are not built in types in Handel, Handel now supports conditonals.</p>
+<p>The syntax for an if - else block is as follows.</p>
+<pre><code><span class="hljs-keyword">start</span>
+    <span class="hljs-keyword">if</span> E4 greaterthan Cb3 <span class="hljs-keyword">then</span>
+        play E4 <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b 
+    <span class="hljs-keyword">else</span>
+        play Cb3 <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
+    endif
+
+    <span class="hljs-keyword">save</span> mydigit = <span class="hljs-number">-5</span>
+    <span class="hljs-keyword">if</span> mydigit equalto <span class="hljs-number">5</span> <span class="hljs-keyword">then</span>
+        play C2 <span class="hljs-keyword">for</span> <span class="hljs-number">5</span>b
+    endif
+<span class="hljs-keyword">finish</span>
+</code></pre>
+<div id="runthirteen" class="runbtn">Run</div>
+<p>The above (though it contains trivial conditionals) plays E4 for 1 beat. Note that <b>else </b> blocks are optional.</p>
+
+
+<h1 id="procedures-i-thought-this-was-a-procedural-programming-language-"greaterthan>Procedures (I thought this was a procedural programming language?)</h1>
 <p>Procedures in Handel are called chunks. You can conceptualize a <strong>chunk</strong> as a song track. When ran,
 chunks play at the same time as other run chunks and the global track. Chunks must begin with the <strong>chunk</strong>
 keyword and end with the <strong>endchunk</strong> keyword.</p>
