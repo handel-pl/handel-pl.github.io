@@ -178,10 +178,26 @@ function runthirteenClicked(){
         play Cb3 for 1b
     endif
 
-    save mydigit = -5
+    save mydigit = 5
     if mydigit equalto 5 then
         play C2 for 5b
     endif
+finish
+    `)
+}
+
+function runfifteenClicked(){
+    RunHandel(`
+    start
+save mynotelist = Cb3, D3
+save myduration = for 1b
+save myplayable = E4, F4, G3 for 3b
+
+save myotherplayable = mynotelist for myduration
+
+play myplayable
+rest myduration
+play myotherplayable
 finish
     `)
 }
@@ -220,6 +236,9 @@ function main(){
 
     let runthirteen= document.body.querySelector("#runthirteen");
     runthirteen.addEventListener('click', runthirteenClicked);
+
+    let runfifteen= document.body.querySelector("#runfifteen");
+    runfifteen.addEventListener('click', runfifteenClicked);
 }
 
 document.addEventListener("DOMContentLoaded", main)
