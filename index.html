@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <script src="https://unpkg.com/handel-pl@0.7.0"></script>
+    <script src="https://unpkg.com/handel-pl@0.8.11"></script>
     <script src="script.js"></script>
     <style>
      body {
@@ -233,7 +233,7 @@ finish
     <span class="hljs-keyword">block</span> 
         play note <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b 
         <span class="hljs-keyword">update</span> note rshift <span class="hljs-number">1</span>
-    endblock <span class="hljs-keyword">loop</span> <span class="hljs-keyword">while</span> note lessthan C3
+    endblock <span class="hljs-keyword">loop</span> <span class="hljs-keyword">while</span> note &lt C3
 <span class="hljs-keyword">finish</span>
 </code></pre>
 <div id="runtwelve" class="runbtn">Run</div>
@@ -243,14 +243,14 @@ finish
 <p>Though booleans are not built in types in Handel, Handel now supports conditonals.</p>
 <p>The syntax for an if - else block is as follows.</p>
 <pre><code><span class="hljs-keyword">start</span>
-    <span class="hljs-keyword">if</span> E4 greaterthan Cb3 <span class="hljs-keyword">then</span>
+    <span class="hljs-keyword">if</span> E4 &gt Cb3 <span class="hljs-keyword">then</span>
         play E4 <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b 
     <span class="hljs-keyword">else</span>
         play Cb3 <span class="hljs-keyword">for</span> <span class="hljs-number">1</span>b
     endif
 
     <span class="hljs-keyword">save</span> mydigit = <span class="hljs-number">5</span>
-    <span class="hljs-keyword">if</span> mydigit equalto <span class="hljs-number">5</span> <span class="hljs-keyword">then</span>
+    <span class="hljs-keyword">if</span> mydigit == <span class="hljs-number">5</span> <span class="hljs-keyword">then</span>
         play C2 <span class="hljs-keyword">for</span> <span class="hljs-number">5</span>b
     endif
 <span class="hljs-keyword">finish</span>
@@ -297,6 +297,10 @@ behavior allows multitrack songs to be created with Handel. </p>
 <h2 id="running-procedures">Running Procedures</h2>
 <p>You can run a chunk using the <strong>run</strong> keyword.</p>
 <p>To run a chunk use the <strong>run</strong> command followed by the name of the chunk. </p>
+
+<p>To run a chunk in place (synchronously) use the <strong>call</strong> command followed by the name of the chunk. 
+        Note that customizations (after the <strong>with</strong> keyword) cannot be used with the <strong>call</strong> command. </p>
+
 <p>If the chunk has parameters, a you must use a matching number of comma separated arguments.</p>
 <p>Here is an example running two chunks. One chunk requires arguments the other does not.</p>
 <pre><code><span class="hljs-keyword">start</span>

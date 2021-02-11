@@ -165,21 +165,21 @@ function runtwelveClicked(){
     block 
         play note for 1b 
         update note rshift 1
-    endblock loop while note lessthan C3
+    endblock loop while note < C3
     finish
     `)
 }
 function runthirteenClicked(){
     RunHandel(`
     start
-    if E4 greaterthan Cb3 then
+    if E4 > Cb3 then
         play E4 for 1b 
     else
         play Cb3 for 1b
     endif
 
     save mydigit = 5
-    if mydigit equalto 5 then
+    if mydigit == 5 then
         play C2 for 5b
     endif
 finish
